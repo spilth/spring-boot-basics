@@ -104,3 +104,15 @@ $ docker run -p 8080:8080 docker.io/library/basics:0.0.1-SNAPSHOT
 ```
 
 Then visit <http://localhost:8080/actuator>
+
+## Deploy to Heroku
+
+```bash
+$ git ini
+$ git add .
+$ git commit -m "First commit"
+$ heroku login
+$ heroku create
+$ git push heroku master
+$ heroku open actuator
+```
