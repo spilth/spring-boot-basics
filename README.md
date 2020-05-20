@@ -24,7 +24,7 @@ $ ./mvnw spring-boot:run
 
 ## Disable the Spring Banner
 
-Add the following to `src/main/resource/application.properties`:
+Add the following to `src/main/resources/application.properties`:
 
 ```
 spring.main.banner-mode=off
@@ -87,7 +87,7 @@ Then visit <http://localhost:8080/actuator>, <http://localhost:8080/actuator/hea
 
 ## Customize the Actuator Info Endpoint
 
-Add the following to `src/main/resource/application.properties`:
+Add the following to `src/main/resources/application.properties`:
 
 ```
 info.app.name=Test Application
