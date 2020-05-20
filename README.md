@@ -107,10 +107,14 @@ Then visit <http://localhost:8080/actuator>
 
 ## Deploy to Heroku
 
+To commit your code and push to Heroku:
+
 ```bash
-$ git ini
+$ git init
 $ git add .
 $ git commit -m "First commit"
+$ brew tap heroku/brew
+$ brew install heroku
 $ heroku login
 $ heroku create
 $ git push heroku master
