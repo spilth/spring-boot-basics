@@ -1,50 +1,52 @@
 # Spring Boot Basics
 
-## Getting Started
+A crash course in getting up and running with [Spring Boot](https://spring.io/projects/spring-boot) on macOS.
+
+## Install Homebrew
+
+The first few steps rely on [Homebrew](https://brew.sh/) being installed:
 
 ```bash
-$ brew tap pivotal/tap
-$ brew install springboot
-$ brew install jenv
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+## Install Java
+
+We can now use Homebrew to install [AdoptOpenJDK](https://adoptopenjdk.net/):
+
+```bash
+$ brew tap AdoptOpenJDK/openjdk
 $ brew cask install adoptopenjdk14
+```
+
+## Install jEnv (Optional)
+
+Install [jEnv](https://www.jenv.be/) if you need to manage multiple versions of Java:
+
+```bash
+$ brew install jenv
 $ jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home/
 $ jenv global 14.0.1
 $ java --version
 ```
 
-## Creating Your First Project
+## Install the Spring Boot CLI
 
-Create and run a simple command-line app with the following:
+The [Spring Boot CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-cli.html) makes it easy to spin up Spring BooT projects using either Maven or Gradle:
 
 ```bash
-$ /usr/local/bin/spring init basics
+$ brew tap pivotal/tap
+$ brew install springboot
+```
+
+## Create a Spring Boot Project
+
+You can create and run a simple command-line Spring Boot app with the following:
+
+```bash
+$ spring init basics
 $ cd basics
 $ ./mvnw spring-boot:run
-```
-
-## Disable the Spring Banner
-
-Add the following to `src/main/resources/application.properties`:
-
-```
-spring.main.banner-mode=off
-```
-
-Then run the app again:
-
-```bash
-$ ./mvnw spring-boot:run
-```
-
-No banner!
-
-## Build and Run a JAR
-
-To create and run a distributable JAR:
-
-```bash
-$ ./mvnw package
-$ java -jar target/basics-0.0.1-SNAPSHOT.jar
 ```
 
 ## Make it a Web Application
@@ -96,7 +98,20 @@ info.app.description=An application to test stuff with!
 
 Then visit <http://localhost:8080/actuator/info>
 
-## Build and Run a Docker Image
+## Build and Run a JAR
+
+To create and run a distributable JAR:
+
+```bash
+$ ./mvnw package
+$ java -jar target/basics-0.0.1-SNAPSHOT.jar
+```
+
+Then visit <http://localhost:8080/actuator>
+
+## Build and Run a Docker Image (Optional)
+
+To create and run a [Docker](https://www.docker.com/) image with port forwarding:
 
 ```bash
 $ ./mvnw spring-boot:build-image
@@ -107,7 +122,7 @@ Then visit <http://localhost:8080/actuator>
 
 ## Deploy to Heroku
 
-To commit your code and push to Heroku:
+To commit your code and run the application on [Heroku](https://www.heroku.com/):
 
 ```bash
 $ git init
@@ -120,3 +135,23 @@ $ heroku create
 $ git push heroku master
 $ heroku open actuator
 ```
+
+The last step opens your web app using the hostname provided by Heroku.
+
+## Other Little Things
+
+### Disable the Spring Banner
+
+You can disable the Spring Banner by adding the following entry to `src/main/resources/application.properties`:
+
+```
+spring.main.banner-mode=off
+```
+
+Then run the app again:
+
+```bash
+$ ./mvnw spring-boot:run
+```
+
+Yay, no banner!
